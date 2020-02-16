@@ -1,0 +1,34 @@
+[package]
+name = "grpc-route-guide"
+version = "0.1.0"
+authors = ["David Li <davidli2010@foxmail.com>"]
+edition = "2018"
+publish = false
+
+[dependencies]
+grpcio = { version = "0.5.0-alpha.5", default-features = false, features = ["protobuf-codec"] }
+protobuf = { version = "2.10", features = ["with-serde"] }
+futures = "0.1"
+serde = { version = "~1", features = ["derive"] }
+serde_json = "~1"
+rand = "0.7"
+
+[build-dependencies]
+protoc-grpcio = "1.1"
+protobuf-codegen = "2.10"
+
+[features]
+default = ["with-serde"]
+with-serde = []
+
+[lib]
+name = "route"
+path = "src/route/lib.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
